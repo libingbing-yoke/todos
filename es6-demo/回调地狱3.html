@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    //获取李华所在班级的老师的信息
+    <script src="./ajax.js"></script>
+    <script>
+        ajax({
+            url: './data/students.json',
+            success: (data) => {
+                data.forEach(item => {
+                    if (item.name === '李华') {
+                        const cid = item.classId;
+                        ajax({
+                            url: './data/classes.json',
+                            success: (data) => {
+                                data.forEach(item => {
+                                    if (item.id === cid) {
+                                        const tid = item.teacherId
+                                        ajax({
+                                            url: './data/teachers.json',
+                                            success: (data) => {
+                                                data.forEach(
+                                                    item => {
+                                                        if (item
+                                                            .id ===
+                                                            tid
+                                                        ) {
+                                                            console
+                                                                .log(
+                                                                    item
+                                                                );
+                                                        }
+                                                    });
+                                            }
+                                        })
+                                    }
+                                });
+                            }
+                        })
+                    }
+                });
+            }
+        })
+    </script>
+</body>
+
+</html>

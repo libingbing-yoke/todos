@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fetch</title>
+</head>
+
+<body>
+    <button>点击获取省份数据</button>
+    <script>
+        async function getProvinces() {
+            const url = "./data/students.json";
+            const config = {
+                method: 'GET',
+                body: '{"a":"1"}'
+            }
+            const resp = await fetch(url);
+            console.log(await resp.json());
+        }
+        document.querySelector('button').onclick = () => {
+            getProvinces();
+        }
+    </script>
+</body>
+
+</html>
